@@ -82,9 +82,24 @@ public class HttpFilesHandlerImpl implements Runnable {
       }
 
       String fileName = (new String(buffer, 4, uri_end - 4, "UTF-8"));
+
+      if (fileName.equalsIgnoreCase(File.separator)) {
+          fileName = "index.html";
+      }
+
       File file = new File(base, fileName);
 
+      if (!file.exists()) {
+        fileName = "404.html";
+        file = new File(base, fileName);
+      }
+
       if (file.canRead()) {
+        try {
+          Thread.sleep(3000);  //emulate heavy loads
+        } catch (InterruptedException e) {
+          e.printStackTrace();
+        }
         sendFile(os, file);
       }
     }

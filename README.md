@@ -79,7 +79,7 @@ reads block with size of buffer while there is data to read
 
 don't forget to close the inputStream if we had one created successfully
 
-   inputStream.close()
+    inputStream.close()
 
 
 The part with dealing when a request is coming is done. now let's review server side:
@@ -88,6 +88,6 @@ the communication is done through sockets:
 
 Socket on client side and ServerSocket on serverSide
 
-when a request appears it get "unique" socket -to communicate with specific client;
+when a request appears it gets "unique" socket - to communicate with specific client;
 
-  Socket clientSocket = serverSocket.accept()
+    Socket clientSocket = serverSocket.accept()

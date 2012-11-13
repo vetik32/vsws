@@ -11,21 +11,17 @@ public class ThreadPooledServer implements Runnable {
     protected int          serverPort   = 8080;
     protected ServerSocket serverSocket = null;
     protected boolean      isStopped    = false;
-    protected Thread       runningThread= null;
     protected ExecutorService threadPool =
-        Executors.newFixedThreadPool(10);
+        Executors.newFixedThreadPool(3);
 
     public ThreadPooledServer(int port){
         this.serverPort = port;
     }
 
     public void run(){
-        synchronized(this){
-            this.runningThread = Thread.currentThread();
-        }
         openServerSocket();
         while(! isStopped()){
-            Socket clientSocket = null;
+            Socket clientSocket;
             try {
                 clientSocket = this.serverSocket.accept();
             } catch (IOException e) {
