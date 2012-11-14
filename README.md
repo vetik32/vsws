@@ -1,4 +1,4 @@
-## VerySimpleWebServer - tutorial
+## VerySimpleWebServer - walkthrough
 ====
 
 Inspired code:
